@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Inherit sale/views/sale_views.xml-->
+<odoo>
+    <data>
+        <record id="sale_view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+<!--                    # Поле исчезает, если оно пустое-->
+<!--                    <field name="x_hide" invisible="1"/>-->
+<!--                    <field name="x_test" attrs="{'invisible': [('x_hide', '=', False)]}"/>-->
+                    <field name="x_test" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
